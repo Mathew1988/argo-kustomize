@@ -10,10 +10,15 @@ For the development the amount of replicas and the namespace should be changed.
 
 `kustomize build ./overlay/dev/applications`
 ````
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: development-nginx-service
+  name: nginx-service
   namespace: argocd
 spec:
   destination:
@@ -33,7 +38,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: development-nginx-deployment
+  name: nginx-deployment
 spec:
   replicas: 1
   selector:
