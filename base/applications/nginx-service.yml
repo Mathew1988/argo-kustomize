@@ -10,7 +10,5 @@ spec:
   source:
     repoURL: https://github.com/Mathew1988/argo-kustomize
     targetRevision: HEAD
-    path: base/res/nginx
   destination:
     server: https://kubernetes.default.svc
-    namespace: base
