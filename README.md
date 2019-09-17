@@ -6,9 +6,10 @@ Within Argo-CD an application should be configured using the overlay/xy/applicat
 These applications are described within the sub-path res. As sample an simple nginx is used.
 For the development the amount of replicas and the namespace should be changed.
 
-## Creating dev application & resources via kustomize
+## Checking dev overlay application & resources via kustomize
 
-`kustomize build ./overlay/dev/applications`
++ `kustomize build ./overlay/dev/applications`
+
 ````
 apiVersion: v1
 kind: Namespace
@@ -33,7 +34,8 @@ spec:
     automated: {}
 ````
 
-`kustomize build ./overlay/dev/res/nginx`
++ `kustomize build ./overlay/dev/res/nginx`
+
 ````
 apiVersion: apps/v1
 kind: Deployment
@@ -56,3 +58,12 @@ spec:
         - containerPort: 80
 ````
 
+## Adding the dev application to Argo-CD
+
+````
+argocd app create dev-app \
+  --dest-server https://kubernetes.default.svc \
+  --repo https://github.com/Mathew1988/argo-kustomize \
+  --path overlay/dev/applications \
+  --dest-namespace argocd
+````
