@@ -4,13 +4,7 @@ metadata:
   name: nginx-service
   namespace: argocd
 spec:
-  project: default
-  syncPolicy:
-   automated: {}
   source:
-    repoURL: https://github.com/Mathew1988/argo-kustomize
-    targetRevision: HEAD
     path: overlay/dev/res/nginx
   destination:
-    server: https://kubernetes.default.svc
     namespace: dev
